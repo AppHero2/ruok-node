@@ -44,16 +44,16 @@ router.post('/send', (req, res, next) => {
 });
 
 router.post('/fcm', (req, res, next) => {
-  var params = JSON.parse(req.body.data);
-  console.log(params);
-  var to = params.fcmToken;
-  var title = params.title;
-  var body = params.body;
-  var icon = params.icon;
-  var sound = params.sound;
-  var click_action = params.click_action;
 
-  const key = params.key;
+  var to = req.body.fcmToken;
+  var title = req.body.title;
+  var body = req.body.body;
+  var icon = req.body.icon;
+  var sound = req.body.sound;
+  var click_action = req.body.click_action;
+
+  const key = req.body.key;
+  
   console.log('key: ', key);
 
   var notification = {
