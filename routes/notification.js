@@ -50,19 +50,20 @@ router.post('/fcm', (req, res, next) => {
   var body = req.body.body;
   var icon = req.body.icon;
   var sound = req.body.sound;
+  var badge = req.body.badge;
   var click_action = req.body.click_action;
 
   const key = req.body.key;
-  
-  console.log('key: ', key);
 
   var notification = {
     'title': title,
     'body': body,
     'icon': icon,
     'sound': sound,
+    'badge': badge,
     'click_action': click_action
   };
+  
   fetch('https://fcm.googleapis.com/fcm/send', {
     'method': 'POST',
     'headers': {
