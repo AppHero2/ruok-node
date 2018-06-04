@@ -45,15 +45,16 @@ router.post('/send', (req, res, next) => {
 
 router.post('/fcm', (req, res, next) => {
 
-  var to = req.body.fcmToken;
-  var title = req.body.title;
-  var body = req.body.body;
-  var icon = req.body.icon;
-  var sound = req.body.sound;
-  var badge = req.body.badge;
-  var click_action = req.body.click_action;
-
+  const to = req.body.fcmToken;
+  const title = req.body.title;
+  const body = req.body.body;
+  const icon = req.body.icon;
+  const sound = req.body.sound;
+  const badge = req.body.badge;
+  const click_action = req.body.click_action;
   const key = req.body.key;
+
+  console.log("badge: ", badge);
 
   var notification = {
     'title': title,
@@ -63,7 +64,7 @@ router.post('/fcm', (req, res, next) => {
     'badge': badge,
     'click_action': click_action
   };
-  
+
   fetch('https://fcm.googleapis.com/fcm/send', {
     'method': 'POST',
     'headers': {
