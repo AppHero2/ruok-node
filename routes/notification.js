@@ -6,23 +6,25 @@ const fetch = require('node-fetch');
 const gcm = require('node-gcm');
 
 router.post('/send', (req, res, next) => {
-    var params = JSON.parse(req.body.data);
-    console.log(params);
-    var to = params.fcmToken;
-    var title = params.title;
-    var body = params.body;
-    var icon = params.icon;
-    var sound = params.sound;
-    var click_action = params.click_action;
+    const params = JSON.parse(req.body.data);
+    const to = params.fcmToken;
+    const title = params.title;
+    const body = params.body;
+    const icon = params.icon;
+    const sound = params.sound;
+    const click_action = params.click_action;
+    const badge = params.badge;
+    const key = params.key;
 
-    var key = 'AAAAoY5gPM8:APA91bGcVJKiJ3ARJ784RFBnHJZiKtpI8O1bl2iGHT_CIF406FelB-ICTHiksvo_sHK6cAgTWcI_r-jnFovqis2xxZAB15W4DUaKZ1dqHwwUnp6Y69RIUVL8v_TThzNiaNoAVWcbFlVI';
-    var notification = {
+    const notification = {
       'title': title,
       'body': body,
       'icon': icon,
       'sound': sound,
+      'badge': badge,
       'click_action': click_action
     };
+    
     fetch('https://fcm.googleapis.com/fcm/send', {
       'method': 'POST',
       'headers': {
