@@ -45,6 +45,29 @@ router.post('/send', (req, res, next) => {
 
 });
 
+router.post('/sms', (req, res, next) => {
+  const params = JSON.parse(req.body.data);
+  const from  = params.from;
+  const to    = params.to;
+  const body = params.body;
+  const authKey = params.authKey;
+  
+  const accountSid = 'AC53bd04fe02997cf8a9364d8d34066ffb';
+  const authToken = authKey;
+  const client = require('twilio')(accountSid, authToken);
+
+  client.messages
+    .create({
+      body: body,
+      from: from,
+      to: to
+    })
+    .then(message => console.log(message.sid))
+    .done();
+
+});
+
+
 router.post('/fcm', (req, res, next) => {
 
   const to = req.body.fcmToken;
