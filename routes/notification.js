@@ -56,13 +56,18 @@ router.post('/sms', (req, res, next) => {
   const authToken = authKey;
   const client = require('twilio')(accountSid, authToken);
 
+  console.log('params : ', params);
+
   client.messages
     .create({
       body: body,
       from: from,
       to: to
     })
-    .then(message => console.log(message.sid))
+    .then(message => {
+      console.log(message.sid)
+      res.status(200).send(message);
+    })
     .done();
 
 });
